@@ -22,7 +22,7 @@ test('create a Player object', () => {
     );
 });
 
-// test Player obj method getStats() which returns data
+// method tests
 test("gets the Player's stats as an object", () => {
     const player = new Player('Dave');
 
@@ -33,7 +33,6 @@ test("gets the Player's stats as an object", () => {
     expect(player.getStats()).toHaveProperty('agility');
 });
 
-// test Player obj has method getInventory(), which return inventory and should be arr
 test('gets inventory from player or returns false', () => {
     const player = new Player('Dave');
     // check that getInventory method returns array (should have values on creation)
@@ -43,4 +42,36 @@ test('gets inventory from player or returns false', () => {
     player.inventory = [];
     // check that empty arr in inventory prop returns false when getInventory method is called
     expect(player.getInventory()).toEqual(false);
-})
+});
+
+test("gets player's health value", () => {
+    const player = new Player('Dave');
+
+    expect(player.getHealth()).toEqual(expect.stringContaining(player.health.toString()));
+});
+
+test('checks if player is alive or not', () => {
+    const player = new Player('Dave');
+    // player starts with health
+    expect(player.isAlive()).toBeTruthy();
+
+    player.health = 0;
+    // reset health to 0 to check for falsy value
+    expect(player.isAlive()).toBeFalsy();
+});
+
+test("subtracts from player's health", () => {
+    // create a player obj and a variable withh starting health (to check against method results)
+    const player = new Player('Dave');
+    const oldHealth = player.health;
+
+    // call method to test that it works
+    player.reduceHealth(5);
+
+    expect(player.health).toBe(oldHealth - 5);
+
+    // call method to test health val never goes negative
+    player.reduceHealth(9999);
+
+    expect(player.health).toBe(0);
+});
