@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/labchild/jest-another-RPG/issues"
   },
-  "homepage": "https://github.com/labchild/jest-another-RPG#readme"
+  "homepage": "https://github.com/labchild/jest-another-RPG#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0"
+  }
 }
